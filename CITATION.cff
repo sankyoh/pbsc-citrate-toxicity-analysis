@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+title: "Statistical analysis support materials for a secondary analysis of PBSC citrate toxicity"
+authors:
+  - family-names: Mitsuhashi
+    given-names: Toshiharu
+type: software
+version: 1.0.0
+date-released: 2026-07-02
+repository-code: "https://github.com/sankyoh/pbsc-citrate-toxicity-analysis"
+license: MIT
+message: "If you use these materials, please cite the archived version."
