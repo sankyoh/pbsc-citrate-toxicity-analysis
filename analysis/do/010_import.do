@@ -4,6 +4,8 @@
 * Excel -> df00.dta
 ****************************************************
 
+version 19.0
+
 * 0) Open a log file
 cap log close
 log using "$LOG\log_010_import.smcl", replace

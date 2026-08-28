@@ -25,7 +25,13 @@ global DO    "${PROJ}`c(dirsep)'do"
 global LOG   "${PROJ}`c(dirsep)'log"
 global OUT   "${PROJ}`c(dirsep)'output"
 
-* 6) Initialize project-specific ado files here, if any
+* 6) Create local-only input/output directories on a fresh clone
+capture mkdir "${RAW}"
+capture mkdir "${CLEAN}"
+capture mkdir "${LOG}"
+capture mkdir "${OUT}"
+
+* 7) Initialize project-specific ado files here, if any
 
 
 di "Project root: ${PROJ}"

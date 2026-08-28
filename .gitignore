@@ -1,0 +1,17 @@
+# Private input data
+analysis/data_raw/
+analysis/data_clean/
+
+# Generated analysis outputs and logs
+analysis/output/
+analysis/log/
+*.log
+*.smcl
+
+# R and editor state
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+.DS_Store
+Thumbs.db

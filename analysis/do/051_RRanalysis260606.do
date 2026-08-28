@@ -1,8 +1,10 @@
 ****************************************************
 * 051_RRanalysis260606.do
-* Purpose: Estimate risk ratios
-* * df02_clean.dta -> RRresults_v2.dta
+* Purpose: Conventional modified Poisson method-sensitivity analyses
+* df02_clean.dta -> RRresults_v2.xlsx
 ****************************************************
+
+version 19.0
 
 cap log close
 log using "$LOG\log_051_RRanalysis.smcl", replace
@@ -15,12 +17,12 @@ use "`read_file'", clear
 
 /***************************************************
 a) Fit modified Poisson regression under the following conditions
-Expoxure  : i.combine3
+Exposure  : i.combine3
 Outcome   : grade_cat2
 Confounder: age sex tbv
 
 b) Sensitivity analysis: analyze each electrolyte as a continuous variable.
-Exposure  : i_ca_min, i_k_mi // Multiply by 10 so that the unit corresponds to 0.1.
+Exposure  : i_ca_min, i_k_min // Multiply by 10 so that the unit corresponds to 0.1.
 
 ---
 
@@ -181,6 +183,51 @@ postclose `memhold'
 * 5) Output results
 ****************************************************
 use `results', clear
+
+****************************************************
+* 5a) Validate the conventional method-sensitivity results
+****************************************************
+assert _N == 4
+assert exposure == "combine3: 1 vs 0" in 1
+assert exposure == "combine3: 2 vs 0" in 2
+assert exposure == "i_ca_min / 0.1 unit" in 3
+assert exposure == "i_k_min / 0.1 unit" in 4
+
+assert abs(cRR   - 7.250)  < 0.0005 in 1
+assert abs(cCI_l - 0.729)  < 0.0005 in 1
+assert abs(cCI_u - 72.079) < 0.0005 in 1
+assert abs(cPv   - 0.091)  < 0.0005 in 1
+assert abs(aRR   - 3.483)  < 0.0005 in 1
+assert abs(aCI_l - 0.668)  < 0.0005 in 1
+assert abs(aCI_u - 18.167) < 0.0005 in 1
+assert abs(aPv   - 0.139)  < 0.0005 in 1
+
+assert abs(cRR   - 11.600)  < 0.0005 in 2
+assert abs(cCI_l - 1.245)   < 0.0005 in 2
+assert abs(cCI_u - 108.050) < 0.0005 in 2
+assert abs(cPv   - 0.031)   < 0.0005 in 2
+assert abs(aRR   - 8.483)   < 0.0005 in 2
+assert abs(aCI_l - 1.875)   < 0.0005 in 2
+assert abs(aCI_u - 38.383)  < 0.0005 in 2
+assert abs(aPv   - 0.006)   < 0.0005 in 2
+
+assert abs(cRR   - 0.364) < 0.0005 in 3
+assert abs(cCI_l - 0.187) < 0.0005 in 3
+assert abs(cCI_u - 0.709) < 0.0005 in 3
+assert abs(cPv   - 0.003) < 0.0005 in 3
+assert abs(aRR   - 0.426) < 0.0005 in 3
+assert abs(aCI_l - 0.223) < 0.0005 in 3
+assert abs(aCI_u - 0.816) < 0.0005 in 3
+assert abs(aPv   - 0.010) < 0.0005 in 3
+
+assert abs(cRR   - 1.161) < 0.0005 in 4
+assert abs(cCI_l - 0.594) < 0.0005 in 4
+assert abs(cCI_u - 2.268) < 0.0005 in 4
+assert abs(cPv   - 0.662) < 0.0005 in 4
+assert abs(aRR   - 1.318) < 0.0005 in 4
+assert abs(aCI_l - 0.848) < 0.0005 in 4
+assert abs(aCI_u - 2.049) < 0.0005 in 4
+assert abs(aPv   - 0.219) < 0.0005 in 4
 
 ****************************************************
 * 6) Create string columns for a manuscript table

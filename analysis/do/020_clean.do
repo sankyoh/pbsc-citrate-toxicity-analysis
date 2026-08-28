@@ -1,8 +1,10 @@
 ****************************************************
 * 020_clean.do
 * Purpose: Prepare an analysis-ready dataset and save it
-* * df00.dta -> df01_clean.dta
+* df00.dta -> df01_clean.dta
 ****************************************************
+
+version 19.0
 
 * 0) Open a log file
 cap log close
