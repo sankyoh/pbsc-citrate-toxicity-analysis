@@ -4,8 +4,8 @@ authors:
   - family-names: Mitsuhashi
     given-names: Toshiharu
 type: software
-version: 1.0.0
-date-released: 2026-07-02
+version: 1.1.0
+date-released: 2026-08-28
 repository-code: "https://github.com/sankyoh/pbsc-citrate-toxicity-analysis"
 license: MIT
 message: "If you use these materials, please cite the archived version."
